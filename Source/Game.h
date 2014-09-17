@@ -8,6 +8,14 @@ public:
 	CGame();
 	void Finalize();
 
+	enum Estado{
+		estado_Iniciando,
+		estado_Menu,
+		estado_Jugando,
+		estado_Terminado,
+		estado_Finalizado
+	};
+
 private:
-	int estado;
+	Estado estado;
 };
