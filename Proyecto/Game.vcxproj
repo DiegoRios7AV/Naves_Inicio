@@ -39,6 +39,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)..\Ejecutable</OutDir>
+    <IncludePath>C:\Users\Diego\Documents\GitHub\Naves_Inicio\Librerias\sdl\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Diego\Documents\GitHub\Naves_Inicio\Librerias\sdl\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

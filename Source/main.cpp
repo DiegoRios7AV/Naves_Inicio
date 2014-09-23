@@ -1,5 +1,6 @@
 #include "Game.h"
 #include  <stdlib.h>
+#include <SDL.h>
 
 // La función principal del juego
 int main(int argc, char *argv[]){
