@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "Game.h"
 #include <SDL.h>
+#include <SDL_image.h>
+#include "config.h"
 
 CGame::CGame(){
 	estado = Estado::estado_Iniciando;
@@ -14,8 +16,7 @@ void CGame::Iniciando(){
 		exit(EXIT_FAILURE);
 	}
 
-	screen = SDL_SetVideoMode(640,480,24,SDL_SWSURFACE);
-	//screen = SDL_SetVideoMode(640,480,24,SDL_HWACCEL);
+	screen = SDL_SetVideoMode(WIDTH_SCREEN,HEIGHT_SCREEN,24,SDL_SWSURFACE);
 
 	if(screen == NULL){
 		printf("error %s", SDL_GetError());
@@ -40,7 +41,31 @@ bool CGame::Start()
 		//Maquina de estados
 		switch(estado){
 		case Estado::estado_Iniciando:
-			CGame::Iniciando();	//INICIALIZAR
+			//manda llamar el metodo iniciando
+			/*Iniciando();{
+				screen = SDL_SetVideoMode(640,480,24,SDL_SWSURFACE);
+				//nave= SDL_LoadBMP("../Data/minave.bmp");
+				nave = IMG_LoadJPG_RW(SDL_RWFromFile("../Data/cuadro.jpg","rb"));
+				SDL_Rect fuente;
+				fuente.x=90;
+				fuente.y=152;
+				fuente.w=242;
+				fuente.h=76;
+				SDL_Rect destino;
+				destino.x = 100;
+				destino.y= 100;
+				destino.w= 100;
+				destino.h=100;
+
+				SDL_BlitSurface(nave,&fuente,screen,&destino);
+				SDL_FreeSurface(nave);
+
+				//IMG_LoadJPG_RW(SDL_RWFromFile("direccion del archivo.jpg","rb"));
+				//IMG_LoadPNG_RW(SDL_RWFromFile("direccion del archivo.png","rb"));
+				
+
+			}*/
+			
 			break;
 		case Estado::estado_Menu:	//MENU	
 			break;
