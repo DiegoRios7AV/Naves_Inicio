@@ -1,5 +1,5 @@
 #include <SDL.h>
-#include "sprite.h"
+#include "nave.h"
 
 class CGame
 {
@@ -20,7 +20,10 @@ public:
 
 private:
 	void Iniciando();
+
+	Uint8 *keys; //Esta variable nos servira para ver si determinadas teclas de nuestro keyboard estan precionadas
+	SDL_Event event; //la variable event de tipo evento de SDL nos servira para manejar los eventos de nuestro programa.
 	SDL_Surface *screen;
-	Sprite *nave;
+	Nave *nave;
 	Estado estado;
 };

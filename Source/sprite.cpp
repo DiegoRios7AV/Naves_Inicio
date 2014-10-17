@@ -1,5 +1,6 @@
 #include "sprite.h"
 #include "SDL.h"
+#include "config.h"
 
 
 void Sprite::CargarImagen(char * ruta){
@@ -35,4 +36,14 @@ void Sprite::PintarModulo(int id, int x, int y){
 	dest.x = x;
 	dest.y = y;
 	SDL_BlitSurface(image,&src, screen, &dest);
+};
+
+
+int Sprite::widthModule(int id){
+	return spriteDef.modulos[id].w;
+
+};
+
+int Sprite::heightModule(int id){
+	return spriteDef.modulos[id].h;
 };

@@ -15,6 +15,8 @@ public:
 	void PintarModulo(int id, int x, int y);
 	Sprite(SDL_Surface * screen); //constructor
 	~Sprite(); //destructor
+	int widthModule(int id);
+	int heightModule(int id); 
 
 };
 

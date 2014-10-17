@@ -24,8 +24,8 @@ void CGame::Iniciando(){
 	}
 
 	SDL_WM_SetCaption("Mi primer juego", NULL);
-	nave= new Sprite(screen);
-	nave->CargarImagen("../Data/minave.bmp");
+	nave= new Nave(screen, "../Data/minave.bmp");
+	//nave->CargarImagen("../Data/minave.bmp");
 }
 
 // Con esta función eliminaremos todos los elementos en pantalla
@@ -43,23 +43,65 @@ bool CGame::Start()
 		//Maquina de estados
 		switch(estado){
 		case Estado::estado_Iniciando:
-				Iniciando();
+				//Iniciando();
+
+				printf("\n1. ESTADO_INICIANDO");
 				estado= estado_Menu;
-			break;
+			
+				
+				break;
 		case Estado::estado_Menu:	//MENU	
-				nave->PintarModulo(SPRITE_MODULE_MI_NAVE,100,100);
-			break;
-		case Estado::estado_Jugando: //JUGANDO	
-			break;
+				/*SDL_FillRect(screen, NULL,0x000000);
+				keys=SDL_GetKeyState(NULL);
+					
+				if(keys[SDLK_RIGHT]){
+					nave->moverR(1);
+				}
+
+				if(keys[SDLK_LEFT]){
+					nave->moverL(1);
+				}
+				nave->Pintar();*/
+
+			
+				printf("\n2. ESTADO_MENU");
+				estado= estado_Jugando;
+				
+				
+				break;
+		case Estado::estado_Jugando: //JUGANDO
+				
+				printf("\n3. ESTADO_JUGANDO");
+				estado= estado_Terminado;
+				
+				break;
 		case Estado::estado_Terminado: //TERMINADO
-			break;
+				
+				printf("\n4. ESTADO_TERMINADO");
+				estado=estado_Finalizado;
+				
+				break;
 		case Estado::estado_Finalizado: //SALIR
+				
+				printf("\n5. ESTADO_FINALIZADO");
+				getchar();
+				
 				salirJuego = true;
 			break;
-		};
+		};//endswitch
+
+		while(SDL_PollEvent(&event))
+		{
+			if(event.type == SDL_QUIT){salirJuego=true;}
+			if(event.type == SDL_KEYDOWN) { }
+
+		};//endEVENTwhile
 
 		//Este codigo esta provicionalmente aqui
-		SDL_Flip(screen);
-    }
+		//SDL_Flip(screen);
+
+    }//endWhile
+
 	return true;
-}
+
+}//endGameStart
