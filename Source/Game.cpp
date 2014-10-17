@@ -37,6 +37,9 @@ bool CGame::Start()
 {
 	// Esta variable nos ayudara a controlar la salida del juego...
 	int salirJuego = false;
+	bool juegoTerminado=false;
+
+
           
 	while (salirJuego == false){
             
@@ -44,11 +47,10 @@ bool CGame::Start()
 		switch(estado){
 		case Estado::estado_Iniciando:
 				//Iniciando();
-
-				printf("\n1. ESTADO_INICIANDO");
-				estado= estado_Menu;
 			
-				
+				printf("\n1. ESTADO_INICIANDO");
+			
+				estado= estado_Menu;
 				break;
 		case Estado::estado_Menu:	//MENU	
 				/*SDL_FillRect(screen, NULL,0x000000);
@@ -56,29 +58,38 @@ bool CGame::Start()
 					
 				if(keys[SDLK_RIGHT]){
 					nave->moverR(1);
-				}
+				};
 
 				if(keys[SDLK_LEFT]){
 					nave->moverL(1);
-				}
-				nave->Pintar();*/
+				};
 
-			
+				if(keys[SDLK_UP]){
+					
+				};
+
+				nave->Pintar();
+				*/
 				printf("\n2. ESTADO_MENU");
-				estado= estado_Jugando;
-				
+
+				if(!juegoTerminado)
+					estado= estado_Jugando;
+				else
+					estado= estado_Finalizado;
 				
 				break;
 		case Estado::estado_Jugando: //JUGANDO
 				
+			
 				printf("\n3. ESTADO_JUGANDO");
 				estado= estado_Terminado;
 				
 				break;
 		case Estado::estado_Terminado: //TERMINADO
-				
+			
 				printf("\n4. ESTADO_TERMINADO");
-				estado=estado_Finalizado;
+				juegoTerminado=true;
+				estado=estado_Menu;
 				
 				break;
 		case Estado::estado_Finalizado: //SALIR
@@ -86,6 +97,7 @@ bool CGame::Start()
 				printf("\n5. ESTADO_FINALIZADO");
 				getchar();
 				
+				juegoTerminado=false;
 				salirJuego = true;
 			break;
 		};//endswitch

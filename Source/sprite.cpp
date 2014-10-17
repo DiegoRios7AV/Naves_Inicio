@@ -5,6 +5,7 @@
 
 void Sprite::CargarImagen(char * ruta){
 		image= SDL_LoadBMP(ruta);
+		SDL_SetColorKey(image, SDL_SRCCOLORKEY | SDL_RLEACCEL, SDL_MapRGB(image->format,255,0,0));	
 	};
 
 Sprite::Sprite(SDL_Surface * screen){
