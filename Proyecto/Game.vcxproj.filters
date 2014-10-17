@@ -43,6 +43,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Ejecutable\readme.txt" />
+    <None Include="..\Ejecutable\readme.txt">
+      <Filter>Archivos de recursos</Filter>
+    </None>
   </ItemGroup>
 </Project>
