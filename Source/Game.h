@@ -1,31 +1,60 @@
 #include <SDL.h>
-#include "nave.h"
-#include "config.h"
+#include <SDL_image.h>
+#include "Nave.h"
+
+
+
 
 class CGame
 {
 public:
+
+	enum Estado{
+		ESTADO_INICIANDO,
+		ESTADO_MENU,
+		ESTADO_JUGANDO,
+		ESTADO_TERMINANDO,
+		ESTADO_FINALIZANDO,
+	};
+
 	bool Start();
 	static CGame instanceGame;
 
 	CGame();
 	void Finalize();
 
-	enum Estado{
-		estado_Iniciando,
-		estado_Menu,
-		estado_Jugando,
-		estado_Terminado,
-		estado_Finalizado
-	};
 
 private:
 	void Iniciando();
+	void MoverEnemigo();
+	bool esLimitePantalla(Nave*objeto, int bandera);
+	bool isPointInRect(int x, int y,Nave*enemigo);
+	bool checkCollision(Nave*objeto, Nave*enemigo);
+	bool estaSeleccionado;
+	int opcion;
+	
+Uint8*keys;
+SDL_Event event;
+SDL_Surface *screen;
+Nave  *nave;
+//Nave *enemigo;
+Nave**enemigoArreglo;
+Nave *menu;
+Nave *textoTitulo;
+Nave *textoIniciar;
+Nave *textoSalir;
+Nave *textoIniciarHover;
+Nave *textoSalirHover;
+Nave *textoDeco;
+Nave *textoNombre;
+Nave *fondo;
 
 
-	Uint8 *keys; //Esta variable nos servira para ver si determinadas teclas de nuestro keyboard estan precionadas
-	SDL_Event event; //la variable event de tipo evento de SDL nos servira para manejar los eventos de nuestro programa.
-	SDL_Surface *screen;
-	Nave *nave;
+
 	Estado estado;
+	float  enemigoParabola;
+	unsigned int frames;
+	unsigned int tiempoFrameInicio;
+	unsigned int tiempoFrameFinal;
+
 };

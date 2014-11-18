@@ -1,5 +1,3 @@
-#include <SDL.h>
-
 #ifndef __SPRITEDEF_H__
 #define __SPRITEDEF_H__
 
@@ -10,13 +8,22 @@ class SpriteDef{
 		int y;
 		int w;
 		int h;
+
+
 	};
 
 public:
-	Modulo modulos [5];
-	SpriteDef(); //constructor
+	Modulo modulos[11];
+	SpriteDef();//Constructor
+
+
+
 };
 
 
-#endif
 
+
+
+
+
+#endif

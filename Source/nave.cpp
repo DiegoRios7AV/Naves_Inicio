@@ -1,26 +1,147 @@
-#include "nave.h"
-#include "config.h"
+#include "Nave.h"
+#include "Config.h"
 
-Nave::Nave(SDL_Surface * screen, char * rutaImagen){
+
+
+Nave::Nave(SDL_Surface* screen, char * rutaImagen,  int x, int y, int module){
+
+	moduleUsing=module;
 	sprite = new Sprite(screen);
 	sprite->CargarImagen(rutaImagen);
-	x=(WIDTH_SCREEN/2)-(sprite->widthModule(SPRITE_MODULE_MI_NAVE)/2);
-	y=(HEIGHT_SCREEN-80-(sprite->heightModule(SPRITE_MODULE_MI_NAVE)));
-};
+	sprite->borrarFondo();
+	w =  sprite->WidthModule(moduleUsing);
+	h = sprite->HeightModule(moduleUsing);
+	this ->x=x;
+	this ->y=y;
+	stepsActual=0;
+	posisiconBrinco=0;
+	posicionaActual=0;
+}
 
-Nave::~Nave(){
+
+Nave::~Nave()
+{
 	delete sprite;
-};
+}
 
-void Nave::Pintar(){
-	sprite->PintarModulo(SPRITE_MODULE_MI_NAVE,x,y);
-};
 
-void Nave::moverR(int posicion){
+void Nave::Pintar()
+{
+	sprite->PintarModulo(moduleUsing,x,y);
+
+}
+
+void Nave::resetPosition()
+{
+	x=(WIDTH_SCREEN/2);
+	y=(HEIGHT_SCREEN-80);
+}
+
+void Nave::Mover(int posicion){
+
 	x += posicion;
-};
 
-void Nave::moverL(int posicion){
+}
+
+void Nave::Moverl(int posicion){
+
 	x -= posicion;
+	
+}
 
-};
+void Nave::Movera(int posicion){
+	y -=posicion;
+	
+}
+void Nave::Moverab(int posicion){
+
+	y+=posicion;
+
+
+}
+
+int Nave::obtenerX(){ return x;}
+
+int Nave::obtenerY(){ return y;}
+
+int Nave::obtenerW(){ return w;}
+
+int Nave::obtenerH(){ return h;}
+
+
+void Nave::ponerEn(int x, int y){
+
+
+
+	this->x=x;
+	this->y=y;
+}
+
+void Nave::Mover(int brinco, int puntoFinal){
+		if(posisiconBrinco<=0){
+	posisiconBrinco=brinco;
+	posicionFinal=puntoFinal;
+		}
+
+}
+
+void Nave::Actualizar(){
+	if(posisiconBrinco!=0){
+		
+		if(posicionaActual<=posicionFinal){
+			Mover(posisiconBrinco);
+			posicionaActual++;
+		}
+		
+		else{
+			TerminarAnimacion();
+
+		}
+
+	}
+
+}
+
+void Nave::SetStep(int stepsFinal){
+
+
+
+	this->stepsFinal=stepsFinal;
+
+
+}
+void Nave:: IncrementarStep(){ 
+	stepsActual++;
+	if(stepsActual>=stepsFinal)
+		stepsActual=0;
+}
+int Nave::ObtenerStepActual(){ 
+	
+	
+	return stepsActual;
+
+
+}
+bool Nave::IsRunningAnimacion(){
+
+
+
+	if( posisiconBrinco==0)
+		return false;
+	else 
+		return true;
+
+
+
+}
+
+void Nave::TerminarAnimacion(){
+	posisiconBrinco=0;
+	posicionaActual=0;
+	posicionFinal=0;
+	IncrementarStep();
+}
+
+void disparar(){
+	
+}

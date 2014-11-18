@@ -1,19 +1,50 @@
-#include "sprite.h"
-#include "SDL.h"
+#ifndef __NVAE_H__
+#define __NVAE_H__
+#include "Sprite.h"
 
-#ifndef __NAVE_H__
-#define __NAVE_H__
-#endif
 
 class Nave{
-	int x;
-	int y;
-	Sprite *sprite;
+	int  x;
+	int  y;
+	int  w;
+	int  h;
+	int posicionaActual;
+	int posicionFinal;
+	int posisiconBrinco;
+	int stepsActual;
+	int stepsFinal;
+
+
+	Sprite * sprite;
+	
 public:
-	Nave(SDL_Surface * screen,char * rutaImagen);
+	Nave(SDL_Surface* screen, char *rutaImagen,int x, int y, int module);
+	
+
 	~Nave();
-	void Pintar();
-	void moverR(int posicion);
-	void moverL(int posicion);
+	 void Pintar();
+
+	 void Mover(int posisicon);
+	 void Moverl(int posicion);
+	 int moduleUsing;
+	 int obtenerX();
+	 int obtenerY();
+	 int obtenerW();
+	 int obtenerH();
+	 void Movera(int posicion);
+	 void Moverab(int posicion);
+	 void ponerEn(int x ,int y);
+	 void Mover( int brinco, int puntoFinal);
+	 void SetStep(int stepsFinal);
+	 void IncrementarStep();
+	 int ObtenerStepActual();
+	 bool  IsRunningAnimacion();
+	 void TerminarAnimacion();// Fuerza a aterminar la animacion de la nave el step
+	 void Actualizar();
+	void resetPosition();
+	void disparar();
 
 };
+
+#endif
+
