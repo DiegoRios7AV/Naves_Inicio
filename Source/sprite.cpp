@@ -3,7 +3,7 @@
 
 
 void Sprite::CargarImagen(char * ruta){
-	image=SDL_DisplayFormat(SDL_LoadBMP(ruta));
+		image= SDL_LoadBMP(ruta);
 	}
 
 Sprite::Sprite(SDL_Surface * screen){
@@ -28,7 +28,7 @@ Sprite::~Sprite(){
 
 void Sprite::borrarFondo(){
 	//image=SDL_LoadBMP(ruta);
-	SDL_SetColorKey(image, SDL_SRCCOLORKEY, SDL_MapRGB(screen->format,0xff,0,0));
+	SDL_SetColorKey(image, SDL_SRCCOLORKEY | SDL_RLEACCEL, SDL_MapRGB(image->format,255,0,0));
 
 }
 

@@ -1,147 +1,43 @@
 #include "Nave.h"
 #include "Config.h"
 
-
-
-Nave::Nave(SDL_Surface* screen, char * rutaImagen,  int x, int y, int module){
-
-	moduleUsing=module;
-	sprite = new Sprite(screen);
-	sprite->CargarImagen(rutaImagen);
-	sprite->borrarFondo();
-	w =  sprite->WidthModule(moduleUsing);
-	h = sprite->HeightModule(moduleUsing);
-	this ->x=x;
-	this ->y=y;
-	stepsActual=0;
-	posisiconBrinco=0;
-	posicionaActual=0;
+void Nave::Pintar(){
+	nave ->Pintar ();
 }
 
-
-Nave::~Nave()
-{
-	delete sprite;
-}
-
-
-void Nave::Pintar()
-{
-	sprite->PintarModulo(moduleUsing,x,y);
-
-}
-
-void Nave::resetPosition()
-{
-	x=(WIDTH_SCREEN/2);
-	y=(HEIGHT_SCREEN-80);
-}
-
-void Nave::Mover(int posicion){
-
-	x += posicion;
-
-}
-
-void Nave::Moverl(int posicion){
-
-	x -= posicion;
+Nave::Nave(SDL_Surface* screen, char *rutaImagen,int x, int y, int module){
+	nave= new Objeto(screen, rutaImagen, x, y, module);
+	bala = new Objeto(screen,"../Data/balas.bmp",0,0,MODULO_BALAS_BALA1);
+	bala->setVisible(false);
 	
 }
 
-void Nave::Movera(int posicion){
-	y -=posicion;
-	
-}
-void Nave::Moverab(int posicion){
-
-	y+=posicion;
-
-
+void Nave::MoverAbajo(){
+	nave->Moverab(8);
 }
 
-int Nave::obtenerX(){ return x;}
-
-int Nave::obtenerY(){ return y;}
-
-int Nave::obtenerW(){ return w;}
-
-int Nave::obtenerH(){ return h;}
-
-
-void Nave::ponerEn(int x, int y){
-
-
-
-	this->x=x;
-	this->y=y;
+void Nave::MoverArriba(){
+		nave->Movera(8);
 }
 
-void Nave::Mover(int brinco, int puntoFinal){
-		if(posisiconBrinco<=0){
-	posisiconBrinco=brinco;
-	posicionFinal=puntoFinal;
-		}
-
+void Nave::MoverDerecha(){
+	nave->Mover(8);
 }
+
+void Nave::MoverIzquierda(){
+	nave->Moverl(8);
+}
+
+Objeto* Nave::GetNaveObjeto(){
+	return nave;
+}
+
+void Nave::Disparar(){
+	bala->setVisible(true);
+	bala->ponerEn(nave->obtenerX()+((nave->obtenerW()/2)-1.2),nave->obtenerY());
+};
 
 void Nave::Actualizar(){
-	if(posisiconBrinco!=0){
-		
-		if(posicionaActual<=posicionFinal){
-			Mover(posisiconBrinco);
-			posicionaActual++;
-		}
-		
-		else{
-			TerminarAnimacion();
-
-		}
-
-	}
-
-}
-
-void Nave::SetStep(int stepsFinal){
-
-
-
-	this->stepsFinal=stepsFinal;
-
-
-}
-void Nave:: IncrementarStep(){ 
-	stepsActual++;
-	if(stepsActual>=stepsFinal)
-		stepsActual=0;
-}
-int Nave::ObtenerStepActual(){ 
-	
-	
-	return stepsActual;
-
-
-}
-bool Nave::IsRunningAnimacion(){
-
-
-
-	if( posisiconBrinco==0)
-		return false;
-	else 
-		return true;
-
-
-
-}
-
-void Nave::TerminarAnimacion(){
-	posisiconBrinco=0;
-	posicionaActual=0;
-	posicionFinal=0;
-	IncrementarStep();
-}
-
-void disparar(){
-	
-}
+	bala->Pintar();
+	bala->Movera(8);
+};

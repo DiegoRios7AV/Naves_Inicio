@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include <SDL_image.h>
+#include "Objeto.h"
 #include "Nave.h"
 
 
@@ -27,27 +28,32 @@ public:
 private:
 	void Iniciando();
 	void MoverEnemigo();
-	bool esLimitePantalla(Nave*objeto, int bandera);
-	bool isPointInRect(int x, int y,Nave*enemigo);
-	bool checkCollision(Nave*objeto, Nave*enemigo);
+	bool esLimitePantalla(Objeto*objeto, int bandera);
+	bool isPointInRect(int x, int y,Objeto*enemigo);
+	bool checkCollision(Objeto*objeto, Objeto*enemigo);
 	bool estaSeleccionado;
 	int opcion;
 	
 Uint8*keys;
 SDL_Event event;
 SDL_Surface *screen;
-Nave  *nave;
+Nave *nave;
 //Nave *enemigo;
-Nave**enemigoArreglo;
-Nave *menu;
-Nave *textoTitulo;
-Nave *textoIniciar;
-Nave *textoSalir;
-Nave *textoIniciarHover;
-Nave *textoSalirHover;
-Nave *textoDeco;
-Nave *textoNombre;
-Nave *fondo;
+Objeto**enemigoArreglo;
+Objeto *menu;
+Objeto *texto;
+Objeto *fondo;
+Objeto * textonombre;
+Objeto * texnoinicio;
+Objeto * textosalir;
+Objeto * textoalumno;
+Objeto* tecxtoamarilloinicio;
+Objeto * textoamarillosalir;
+Objeto * fondojuego;
+
+Objeto *textos;
+
+
 
 
 
