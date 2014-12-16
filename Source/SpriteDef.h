@@ -8,22 +8,9 @@ class SpriteDef{
 		int y;
 		int w;
 		int h;
-
-
 	};
-
 public:
-	Modulo modulos[12];
+	Modulo modulo[12];//Numero de modulos
 	SpriteDef();//Constructor
-
-
-
 };
-
-
-
-
-
-
-
 #endif

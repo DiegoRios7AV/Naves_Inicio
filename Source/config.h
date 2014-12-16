@@ -1,23 +1,21 @@
-#ifndef __CONFIG_H__
-	#define __CONFIG_H__
+#ifndef _CONFIG_H_
+#define _CONFIG_H_
 
-	#define WIDTH_SCREEN 640
-	#define HEIGHT_SCREEN 480
-#define SPRITE_MODULE_MI_NAVE 0
+#define WIDTH_SCREEN 640
+#define HEIGHT_SCREEN 480
 
-#define BORDE_IZQUIERDO   1<<0
-#define BORDE_SUPERIOR	  1<<1
-#define BORDE_DERECHO     1<<2
-#define BORDE_INFERIOR    1<<3
+#define BORDE_IZQUIERDO		1<<0
+#define BORDE_DERECHO		1<<2
+#define BORDE_INFERIOR		1<<3
+#define BORDE_SUPERIOR		1<<4
+
 #define FPS_LIMIT 30.0f
-#define FPS_DELAY 1000.0f/ FPS_LIMIT
-/******************  SPRITES **************/
-/*
+#define FPS_DELAY 1000.0f / FPS_LIMIT
 
-TIPO_NOMBRE(Archivo)_DESCRIPCION
+#define MAXIMO_BALAS    500
 
-
-*/
+#define NAVE_PROPIA     0
+#define NAVE_ENEMIGO    1
 
 #define MODULO_MINAVE_NAVE				0
 #define MODULO_MENU_FONDO				1
@@ -30,8 +28,5 @@ TIPO_NOMBRE(Archivo)_DESCRIPCION
 #define MODULO_TEXTO_OPCION1_SELEC		8
 #define MODULO_TEXTO_OPCION2_SELEC		9
 #define MODULO_BALAS_BALA1				10
-
-
-
-/******************************************/
+ 
 #endif
